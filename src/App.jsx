@@ -1,7 +1,12 @@
-import React from "react";
+// import React from "react";
 import Sidebar from './components/Sidebar'
 import Player from './components/Player'
-import Display from './components/Display'
+import Display from './components/Display.jsx'
+// --- > Moved following lines from Display.jsx  --- >
+// import { Route, Routes } from "react-router-dom";
+// --- > Added BrowserRouter to line --- >
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import DisplayHome from "./DisplayHome";
 
 const App = () => {
   return (
