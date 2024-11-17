@@ -2,13 +2,18 @@
 import Sidebar from './components/Sidebar'
 import Player from './components/Player'
 import Display from './components/Display.jsx'
+import { useContext } from 'react'
 // --- > Moved following lines from Display.jsx  --- >
 // import { Route, Routes } from "react-router-dom";
 // --- > Added BrowserRouter to line --- >
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import DisplayHome from "./DisplayHome";
+import { PlayerContext } from './context/PlayerContext.jsx'
 
 const App = () => {
+
+  const {audioRef,track} = useContext(PlayerContext);
+
   return (
     <div className='h-screen bg-black'>
       <div className='h-[90%] flex'>
@@ -16,7 +21,7 @@ const App = () => {
         <Display/>
       </div>
       <Player/>
-     
+      <audio ref={audioRef} src={track.file} preload='auto'></audio>     
     </div>
   )
 }
