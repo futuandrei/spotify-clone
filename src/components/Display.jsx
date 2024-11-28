@@ -3,14 +3,15 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { albumsData } from "../assets/assets.js";
 import DisplayHome from "./DisplayHome.jsx";
 import DisplayAlbum from "./DisplayAlbum.jsx";
-import SearchResults from "./SearchResults.jsx"; // New component for search results
+import SearchResults from "./SearchResults.jsx"; // Search results component
+import DisplayPlaylist from "./DisplayPlaylist.jsx";
 
-const Display = ({ searchResults }) => {
+const Display = ({ searchResults, onAddToPlaylist }) => {
   const displayRef = useRef();
   const location = useLocation();
   const isAlbum = location.pathname.includes("album");
   const albumId = isAlbum ? location.pathname.slice(-1) : "";
-  const bgColor = isAlbum ? albumsData[Number(albumId)].bgColor : null; // Album BG Color
+  const bgColor = isAlbum ? albumsData[Number(albumId)].bgColor : null;
 
   useEffect(() => {
     if (isAlbum) {
@@ -27,12 +28,16 @@ const Display = ({ searchResults }) => {
     >
       {searchResults ? (
         // If searchResults are available, show the SearchResults component
-        <SearchResults results={searchResults} />
+        <SearchResults
+          results={searchResults}
+          onAddToPlaylist={onAddToPlaylist}
+        />
       ) : (
         // Otherwise, show the existing Routes logic
         <Routes>
           <Route path="/" element={<DisplayHome />} />
           <Route path="/album/:id" element={<DisplayAlbum />} />
+          <Route path="/playlists/:id" element={<DisplayPlaylist />} />
         </Routes>
       )}
     </div>
