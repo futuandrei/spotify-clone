@@ -14,7 +14,7 @@ const Sidebar = () => {
       navigate("/playlists"); // Navigate to playlists page
     }
   };
-  console.log(playlists);
+  // console.log(playlists);
 
   return (
     <div className="w-[25%] h-full p-2 flex-col gap-2 text-white hidden lg:flex">
