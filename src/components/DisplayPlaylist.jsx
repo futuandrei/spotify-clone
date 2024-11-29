@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { usePlaylist } from "../context/PlaylistContext";
 import { useParams } from "react-router-dom";
 
@@ -6,16 +6,32 @@ const DisplayPlaylist = () => {
   const { id } = useParams(); // Get the playlist name from the URL
   const { playlists } = usePlaylist();
 
-  // Fetch the playlist by name
-  const playlist = playlists.find((p) => p.id === id);
+  // Handle no playlists case
+  if (playlists.length === 0) {
+    return (
+      <div className="text-white p-4">
+        <h2 className="text-2xl font-bold mb-4">Your Playlists</h2>
+        <p className="text-gray-500">No playlists created yet.</p>
+      </div>
+    );
+  }
 
+  // Fetch the playlist by name
+  const playlist = playlists.find((p) => p.id.toString === id);
+
+  // Handle playlist not found case
   if (!playlist) {
-    return <p>Playlist not found</p>;
+    return (
+      <div className="text-white p-4">
+        <h2 className="text-2xl font-bold mb-4">Your Playlists</h2>
+        <p className="text-gray-500">Playlist not found.</p>
+      </div>
+    );
   }
 
   return (
     <div className="text-white p-4">
-      <h2 className="text-2xl font-bold mb-4">Your Playlists</h2>
+      <h2 className="text-2xl font-bold mb-4">{playlist.name}</h2>
       {playlists.length > 0 ? (
         playlists.map((playlist) => (
           <div key={playlist.name} className="mb-6">
@@ -38,7 +54,7 @@ const DisplayPlaylist = () => {
           </div>
         ))
       ) : (
-        <p className="text-gray-500">No playlists created yet.</p>
+        <p className="text-gray-500">No songs in this playlist yet..</p>
       )}
     </div>
   );

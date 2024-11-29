@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const SearchResults = ({ results, onAddToPlaylist }) => {
-  const [selectedSong, setSelectedSong] = useState(null);
-
   const handleAddClick = (song) => {
-    setSelectedSong(song);
     onAddToPlaylist(song); // Trigger the callback to handle adding to a playlist
   };
 
@@ -41,6 +38,12 @@ const SearchResults = ({ results, onAddToPlaylist }) => {
       )}
     </div>
   );
+};
+
+// Define PropTypes
+SearchResults.propTypes = {
+  results: PropTypes.array.isRequired, // `results` must be an array and is required
+  onAddToPlaylist: PropTypes.func.isRequired, // `onAddToPlaylist` must be a function and is required
 };
 
 export default SearchResults;

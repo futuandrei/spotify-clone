@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { albumsData } from "../assets/assets.js";
 import DisplayHome from "./DisplayHome.jsx";
 import DisplayAlbum from "./DisplayAlbum.jsx";
 import SearchResults from "./SearchResults.jsx"; // Search results component
 import DisplayPlaylist from "./DisplayPlaylist.jsx";
+import PropTypes from "prop-types";
 
 const Display = ({ searchResults, onAddToPlaylist }) => {
   const displayRef = useRef();
@@ -12,6 +13,9 @@ const Display = ({ searchResults, onAddToPlaylist }) => {
   const isAlbum = location.pathname.includes("album");
   const albumId = isAlbum ? location.pathname.slice(-1) : "";
   const bgColor = isAlbum ? albumsData[Number(albumId)].bgColor : null;
+
+  // console.log("searchResults is: " + typeof searchResults);
+  // console.log("onAddToPlaylist is: " + typeof onAddToPlaylist);
 
   useEffect(() => {
     if (isAlbum) {
@@ -42,6 +46,12 @@ const Display = ({ searchResults, onAddToPlaylist }) => {
       )}
     </div>
   );
+};
+
+// Define PropTypes
+Display.propTypes = {
+  searchResults: PropTypes.object, // `text` must be a string and is required
+  onAddToPlaylist: PropTypes.func.isRequired, // `text` must be a string and is required
 };
 
 export default Display;

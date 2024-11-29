@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { usePlaylist } from "../context/PlaylistContext";
@@ -63,7 +63,7 @@ const Sidebar = () => {
           {playlists.length === 0 ? (
             <>
               <h1>Create your first playlist</h1>
-              <p className="font-light">It's easy, we will help you</p>
+              {/* <p className="font-light">It's easy, we will help you</p> */}
               <button
                 className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4"
                 onClick={handleCreatePlaylist}

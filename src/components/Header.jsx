@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const Header = ({ onSearch }) => {
   const [query, setQuery] = useState("");
+
+  // console.log("Hello from header");
+  console.log("onSearch is" + typeof onSearch);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -35,6 +39,11 @@ const Header = ({ onSearch }) => {
       </div>
     </div>
   );
+};
+
+// Define PropTypes
+Header.propTypes = {
+  onSearch: PropTypes.func.isRequired, // `text` must be a string and is required
 };
 
 export default Header;
